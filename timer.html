@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            color:rgb(255,255,255);
+            letter-spacing: 1.5px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: normal;
+        }
+        body,html{
+            
+            background-color: rgb(20,20,20);
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #input_div{
+            display: flex;
+            flex-flow: column wrap;
+            
+        }
+        .inputs{
+            background-color: transparent;
+            margin: 10px;
+            padding: 6px 10px;
+            border: 1px solid rgb(255,255,255);
+        }
+        button{
+            margin-top: 30px;
+            background-color: transparent;
+            color: rgb(255,255,255);
+            padding: 10px;
+            border: 1px solid rgb(255,255,255);
+        }
+        #timer_show{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="input_div">
+
+        <p>ID: 11628</p>
+
+        <p>Hour</p>
+        <input class="inputs" id="hour_input">
+
+        <p>Minutes</p>
+        <input class="inputs" id="minutes_input">
+
+        <p>Seconds</p>
+        <input class="inputs" id="seconds_input">
+
+        <button onclick="startTimer()">Start Timer</button>
+    </div>
+    
+
+    <div id="timer_show">
+
+    </div>
+
+
+</body>
+</html>
+
+<script>
+
+    function startTimer() { 
+
+        let hours = document.getElementById("hour_input").value;
+        let minutes = document.getElementById("minutes_input").value;
+        let seconds = document.getElementById("seconds_input").value;
+
+        
+
+        let totalHours = hours * (60 * 60);
+
+        let totalMinutes = minutes * 60;
+
+        let total = Number(totalHours+totalMinutes+seconds);
+
+        document.getElementById("input_div").style.display = "none";
+        let timerShow = document.getElementById("timer_show");
+
+       
+        console.log(total);
+       var myInterval = setInterval(function () {
+            
+            
+
+            timerShow.innerHTML = "<p class='timer_p'>" + total +  " seconds remaining </p>";
+            timerShow.style.display = "block";
+            total--;
+            
+
+            if(total == 0){
+                timerShow.innerHTML = "<p class='timer_p'>Finished</p>";
+                clearInterval(myInterval);
+            }
+          },1000
+        )
+
+        
+     }
+
+</script>
